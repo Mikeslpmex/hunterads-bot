@@ -1,3 +1,10 @@
+#!/bin/bash
+
+echo "🔑 CONFIGURANDO TOKEN EN CÓDIGO"
+echo "================================"
+
+# Actualizar el bot con token por defecto
+cat > bot_railway.py << 'BOTFIX'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 from telegram import Update
@@ -79,3 +86,17 @@ def main():
 
 if __name__ == '__main__':
     main()
+BOTFIX
+
+echo "🚀 Subiendo fix del token..."
+git add .
+git commit -m "FIX: Token por defecto en código - Variables Railway"
+git push origin main
+
+echo ""
+echo "✅ TOKEN CONFIGURADO"
+echo "===================="
+echo "🔑 Token incluido en código"
+echo "⚙️ También configura en Railway Variables:"
+echo "   TELEGRAM_BOT_TOKEN = 8285048355:AAHTuCMOj5w5Ox2pZ5sUR_ofYmQpPG_jRvw"
+echo "   TELEGRAM_ADMIN_CHAT_ID = 7318862870"
