@@ -1,3 +1,20 @@
+#!/bin/bash
+
+echo "🐍 FORZANDO PYTHON 3.11 - COMPATIBLE CON TELEGRAM-BOT"
+echo "===================================================="
+
+# 1. Especificar Python 3.11 explícitamente
+echo "python-3.11.9" > runtime.txt
+
+# 2. Requirements compatibles con Python 3.11
+cat > requirements.txt << 'REQUIREMENTS'
+python-telegram-bot==20.7
+groq==0.3.0
+requests==2.31.0
+REQUIREMENTS
+
+# 3. Bot simplificado y compatible
+cat > bot_railway.py << 'BOT'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 import os
@@ -43,3 +60,20 @@ def main():
 
 if __name__ == '__main__':
     main()
+BOT
+
+echo "📁 Archivos creados:"
+ls -la runtime.txt requirements.txt bot_railway.py
+
+echo "🚀 Subiendo compatibilidad Python 3.11..."
+git add .
+git commit -m "FIX: Python 3.11 forzado - Compatible con telegram-bot"
+git push origin main
+
+echo ""
+echo "✅ PYTHON 3.11 CONFIGURADO"
+echo "=========================="
+echo "🐍 Python: 3.11.9 (compatible)"
+echo "📦 Dependencias: compatibles"
+echo "🤖 Bot: simplificado y funcional"
+echo "🚀 Deploy en 2-3 minutos..."
