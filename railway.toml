@@ -1,6 +1,0 @@
-[build]
-builder = "nixpacks"
-
-[deploy]
-startCommand = "python bot_railway.py"
-restartPolicyType = "ON_FAILURE"

@@ -1,2 +1,1 @@
-web: python tesorero_app.py
-worker: python main.py
+web: python bot_railway.py
