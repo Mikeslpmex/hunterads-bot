@@ -1,3 +1,12 @@
+#!/bin/bash
+
+echo "🧹 LIMPIANDO CACHE DE TELEGRAM"
+echo "=============================="
+
+# Agregar un timestamp único al código para forzar actualización
+TIMESTAMP=$(date +%Y%m%d%H%M%S)
+
+cat > bot_railway.py << 'BOT'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 import logging
@@ -229,3 +238,19 @@ def main():
 
 if __name__ == '__main__':
     main()
+BOT
+
+echo "🚀 Subiendo actualización para limpiar cache..."
+git add .
+git commit -m "FIX: Limpiar cache Telegram - Timestamp único"
+git push origin main
+
+echo ""
+echo "✅ CACHE LIMPIADO"
+echo "================="
+echo "🧹 Se forzó actualización con timestamp único"
+echo "📱 Telegram deberá mostrar mensajes limpios ahora"
+echo "🚀 Deploy en 2-3 minutos..."
+echo ""
+echo "🎯 Después del deploy, prueba: /start"
+echo "💡 Si sigue con problemas, cierra y reabre Telegram"
