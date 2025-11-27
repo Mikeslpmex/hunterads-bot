@@ -1,3 +1,10 @@
+#!/bin/bash
+
+echo "📋 MEJORANDO MENÚ DE COMANDOS VISIBLES"
+echo "======================================"
+
+# Crear bot con menú mejorado
+cat > bot_railway.py << 'BOT'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 import logging
@@ -226,3 +233,21 @@ def main():
 
 if __name__ == '__main__':
     main()
+BOT
+
+echo "🚀 Subiendo menú mejorado..."
+git add .
+git commit -m "FEAT: Menú mejorado - Comandos visibles y organizados"
+git push origin main
+
+echo ""
+echo "✅ MENÚ MEJORADO IMPLEMENTADO"
+echo "============================="
+echo "📋 Ahora /start mostrará:"
+echo "   • Todos los comandos visibles"
+echo "   • Ejemplos de uso claros"
+echo "   • Precios y comisiones"
+echo "   • Plataformas disponibles"
+echo ""
+echo "🚀 Deploy en 2-3 minutos..."
+echo "📱 Prueba: /start"
