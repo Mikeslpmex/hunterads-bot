@@ -1,3 +1,13 @@
+#!/bin/bash
+
+echo "🚀 AGREGANDO COMANDOS FALTANTES AL BOT ESTABLE"
+echo "=============================================="
+
+# Backup del bot actual por seguridad
+cp bot_railway.py bot_railway_backup.py
+
+# Crear nueva versión con todos los comandos
+cat > bot_railway_complete.py << 'COMPLETE_BOT'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 from telegram import Update
@@ -207,3 +217,23 @@ def main():
 
 if __name__ == '__main__':
     main()
+COMPLETE_BOT
+
+# Reemplazar el bot actual con la versión completa
+mv bot_railway_complete.py bot_railway.py
+
+echo "🚀 Subiendo bot completo..."
+git add .
+git commit -m "FEAT: Agregar comandos completos - /productos, /urgente, /estado"
+git push origin main
+
+echo ""
+echo "✅ BOT COMPLETO AGREGADO"
+echo "========================"
+echo "🎯 NUEVOS COMANDOS:"
+echo "   /productos - Catálogo completo"
+echo "   /urgente   - Marketing IA" 
+echo "   /estado    - Estado del sistema"
+echo "   /tesorero  - Info financiera mejorada"
+echo ""
+echo "📱 Probarlos en 2-3 minutos después del deploy..."
