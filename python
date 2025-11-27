@@ -1,0 +1,31 @@
+from flask import Flask, request
+import os
+import subprocess
+
+app = Flask(__name__)
+
+# Comando para iniciar el bot (ajusta según tu lógica)
+def start_bot():
+    try:
+        # Ejecuta el script de inicialización
+        subprocess.run(["./fix_initialization.sh"], check=True)
+        print("Bot inicializado correctamente.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error al inicializar el bot: {e}")
+
+# Ruta para verificar el estado del bot
+@app.route('/status', methods=['GET'])
+def status():
+    return {"status": "Bot en ejecución"}
+
+# Ruta para manejar mensajes entrantes (ejemplo para Telegram)
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    data = request.json
+    # Aquí va la lógica para manejar los comandos (/start, /productos, etc.)
+    print(f"Mensaje recibido: {data}")
+    return {"status": "Mensaje procesado"}
+
+if __name__ == "__main__":
+    start_bot()
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
