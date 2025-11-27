@@ -1,0 +1,11 @@
+[phases.setup]
+cmds = [
+    "python --version",
+    "pip install --upgrade pip"
+]
+
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[start]
+cmd = "python bot_railway.py"
