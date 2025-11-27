@@ -1,3 +1,25 @@
+#!/bin/bash
+
+echo "🔑 CREANDO NUEVO BOT Y TOKEN"
+echo "============================"
+
+echo "🎯 INSTRUCCIONES:"
+echo "1. Abre Telegram y busca @BotFather"
+echo "2. Envía: /newbot"
+echo "3. Elige nombre para tu bot"
+echo "4. Elige username (debe terminar en 'bot')"
+echo "5. Copia el NUEVO token que te dé"
+echo ""
+read -p "8285048355:AAGtD1LVGsmP6U4CTUIHgTOujv-fWPOria4
+" NUEVO_TOKEN
+
+if [ -z "$NUEVO_TOKEN" ]; then
+    echo "❌ No se ingresó token"
+    exit 1
+fi
+
+# Crear bot con nuevo token
+cat > bot_railway.py << 'BOT'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 import logging
@@ -49,3 +71,22 @@ def main():
 
 if __name__ == '__main__':
     main()
+BOT
+
+# Reemplazar el token en el archivo
+sed -i "s/\\$NUEVO_TOKEN/$NUEVO_TOKEN/g" bot_railway.py
+
+echo "🚀 Subiendo nuevo token..."
+git add .
+git commit -m "NEW: Token recreado - Bot nuevo"
+git push origin main
+
+echo ""
+echo "✅ NUEVO TOKEN CONFIGURADO"
+echo "=========================="
+echo "🔑 Token actualizado en código"
+echo "⚙️ También configura en Railway Variables:"
+echo "   TELEGRAM_BOT_TOKEN = $NUEVO_TOKEN"
+echo "🚀 Deploy en 2-3 minutos..."
+echo ""
+echo "📱 Busca tu nuevo bot en Telegram con el username que elegiste"
