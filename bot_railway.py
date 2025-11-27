@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # NUEVO TOKEN
-TOKEN = "$NUEVO_TOKEN"
+TOKEN = "8285048355:AAGtD1LVGsmP6U4CTUIHgTOujv-fWPOria4"
 
 async def start(update, context):
     await update.message.reply_text(
