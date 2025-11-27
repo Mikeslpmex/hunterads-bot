@@ -1,9 +1,6 @@
+# Entorno y cachés
 .env
-*.env
 __pycache__/
-*.pyc
-*.pyo
-*.log
-apks/*.apk
-*.jks
-*.keystore
+*.py[cod]
+venv/
+.env.local
