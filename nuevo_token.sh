@@ -10,8 +10,7 @@ echo "3. Elige nombre para tu bot"
 echo "4. Elige username (debe terminar en 'bot')"
 echo "5. Copia el NUEVO token que te dé"
 echo ""
-read -p "8285048355:AAGtD1LVGsmP6U4CTUIHgTOujv-fWPOria4
-" NUEVO_TOKEN
+read -p "📝 Pega el NUEVO token aquí: " NUEVO_TOKEN
 
 if [ -z "$NUEVO_TOKEN" ]; then
     echo "❌ No se ingresó token"
