@@ -1,3 +1,12 @@
+#!/bin/bash
+
+echo "🔑 FORZANDO NUEVO TOKEN EN CÓDIGO"
+echo "================================"
+
+NUEVO_TOKEN="8285048355:AAErNzEOWcsfocP5WvNUZYb3LDTYTtvUE-k"
+
+# Crear bot con token hardcodeado
+cat > bot_railway.py << 'BOT'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 import logging
@@ -79,3 +88,38 @@ def main():
 
 if __name__ == '__main__':
     main()
+BOT
+
+# También actualizar requirements para asegurar compatibilidad
+cat > requirements.txt << 'EOF'
+python-telegram-bot==20.7
+requests==2.31.0
+EOF
+
+# Runtime específico
+echo "python-3.11.9" > runtime.txt
+
+# Procfile claro
+cat > Procfile << 'EOF'
+worker: python bot_railway.py
+EOF
+
+echo "📁 Verificando archivos:"
+ls -la bot_railway.py requirements.txt runtime.txt Procfile
+
+echo "🚀 Subiendo token forzado en código..."
+git add .
+git commit -m "FORCE: Token hardcodeado - 8285048355:AAErNzEOWcsfocP5WvNUZYb3LDTYTtvUE-k"
+git push origin main
+
+echo ""
+echo "✅ TOKEN FORZADO EN CÓDIGO"
+echo "=========================="
+echo "🔑 Token: 8285048355:AAErNzEOWcsfocP5WvNUZYb3LDTYTtvUE-k"
+echo "📝 Hardcodeado en bot_railway.py"
+echo "🐍 Python 3.11.9 forzado"
+echo "🚀 Deploy en 2-3 minutos..."
+echo ""
+echo "🎯 También configura en Railway Variables:"
+echo "   TELEGRAM_BOT_TOKEN = 8285048355:AAErNzEOWcsfocP5WvNUZYb3LDTYTtvUE-k"
+echo "   TELEGRAM_ADMIN_CHAT_ID = 7318862870"
