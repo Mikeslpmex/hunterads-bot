@@ -1,3 +1,10 @@
+#!/bin/bash
+
+echo "🔧 SOLUCIONANDO ERROR DE INICIALIZACIÓN"
+echo "========================================"
+
+# Crear bot con manejo de errores mejorado
+cat > bot_railway.py << 'BOT'
 #!/usr/bin/env python3
 from telegram.ext import Application, CommandHandler
 import logging
@@ -67,3 +74,23 @@ def main():
 
 if __name__ == '__main__':
     main()
+BOT
+
+# Asegurar requirements compatibles
+cat > requirements.txt << 'EOF'
+python-telegram-bot==20.7
+requests==2.31.0
+EOF
+
+echo "🚀 Subiendo fix de inicialización..."
+git add .
+git commit -m "FIX: Inicialización robusta - Manejo de errores mejorado"
+git push origin main
+
+echo ""
+echo "✅ INICIALIZACIÓN MEJORADA"
+echo "=========================="
+echo "🔧 Manejo de errores robusto"
+echo "⏱️ Timeouts configurados"
+echo "🔄 Reinicio automático"
+echo "🚀 Deploy en 2-3 minutos..."
