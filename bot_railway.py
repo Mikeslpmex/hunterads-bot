@@ -71,11 +71,11 @@ def main():
         app.run_webhook(
             listen="0.0.0.0",
             port=PORT,
-            webhook_path=path,
-            webhook_url=full_webhook,
+            path=path,          # ← parámetro correcto
+            url=full_webhook,   # ← parámetro correcto
             drop_pending_updates=True,
             allowed_updates=["message", "callback_query"],
-            stop_signals=None  # evita errores de señales en Railway
+            stop_signals=None   # evita errores de señales en Railway
         )
     else:
         logger.info("⚠️ WEBHOOK_URL no definido: usando polling")
@@ -84,7 +84,7 @@ def main():
             allowed_updates=["message", "callback_query"],
             poll_interval=2.0,
             timeout=30,
-            stop_signals=None  # evita errores de señales en Railway
+            stop_signals=None   # evita errores de señales en Railway
         )
 
 if __name__ == "__main__":
