@@ -72,14 +72,15 @@ def main():
         logger.info(f"✅ Modo WEBHOOK activado en {full_webhook_url}")
 
         # ⚠️ IMPORTANTE: NO usar 'path=' en run_webhook() en v20+
-        app.run_webhook(
-            listen="0.0.0.0",
-            port=PORT,
-            url=full_webhook_url,  # URL completa con path
-            drop_pending_updates=True,
-            allowed_updates=["message", "callback_query"],
-            stop_signals=None,
-        )
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        webhook_path=path,
+        webhook_url=full_webhook,
+        drop_pending_updates=True,
+        allowed_updates=["message", "callback_query"],
+        stop_signals=None
+    )
     else:
         logger.info("⚠️ WEBHOOK_URL no definido: usando polling")
         app.run_polling(
