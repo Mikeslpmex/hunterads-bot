@@ -1,2 +1,7 @@
 python-telegram-bot==20.3
 python-dotenv
+python-telegram-bot==20.3
+python-dotenv==1.2.2
+flask
+gunicorn
+httpx  # ya lo tienes
