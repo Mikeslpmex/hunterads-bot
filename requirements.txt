@@ -5,5 +5,5 @@ numpy
 scikit-learn
 xgboost
 # torch y torchvision son opcionales, pero si se usan, añadirlas
-# aiohttp (para el webhook)
+# aiohttp (para el webhook)i
 install gunicorn
