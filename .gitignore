@@ -1,6 +1,54 @@
-# Entorno y cachés
+# Entorno
 .env
+.env.local
+venv/
+env/
+ENV/
+
+# Python
 __pycache__/
 *.py[cod]
-venv/
-.env.local
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+*.cache
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Otros
+.env.*.local
+*.bak
+node_modules/
