@@ -4,6 +4,5 @@ python-dotenv==1.0.0
 numpy
 scikit-learn
 xgboost
-# torch y torchvision son opcionales, pero si se usan, añadirlas
-# aiohttp (para el webhook)i
-install gunicorn
+aiohttp==3.9.3  # Para el webhook
+gunicorn==20.1.0
