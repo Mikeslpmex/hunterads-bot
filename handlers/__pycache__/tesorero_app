@@ -1,0 +1,51 @@
+from tesorero_app import tesorero
+
+async def afiliado(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Comando /afiliado - Registrar venta"""
+    try:
+        if not context.args or len(context.args) < 2:
+            await update.message.reply_text(
+                "❌ Uso: `/afiliado [producto] [monto]`\nEjemplo: `/afiliado Premium_Pack 299.99`",
+                parse_mode="Markdown"
+            )
+            return
+
+        producto = " ".join(context.args[:-1])
+        monto = float(context.args[-1])
+        comision = monto * 0.15
+
+        # Registrar en tesorero
+        tesorero.registrar_venta(producto, monto, comision)
+
+        mensaje = (
+            f"🔗 **VENTA REGISTRADA**\n\n"
+            f"• Producto: {producto}\n"
+            f"• Monto: ${monto:.2f}\n"
+            f"• Comisión (15%): ${comision:.2f}\n"
+            f"✅ Guardado en base de datos"
+        )
+        await update.message.reply_text(mensaje, parse_mode="Markdown")
+        logger.info(f"✅ Venta: {producto} - ${monto:.2f}")
+
+    except ValueError:
+        await update.message.reply_text("❌ El monto debe ser un número. Ej: `/afiliado Producto 100.00`")
+    except Exception as e:
+        logger.error(f"❌ Error en afiliado: {e}")
+        await update.message.reply_text("❌ Error al registrar venta")
+
+async def tesorero(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Comando /tesorero - Estado financiero REAL"""
+    try:
+        datos = tesorero.estado()
+        mensaje = (
+            f"🪙 **TESORERO ORION**\n\n"
+            f"💰 **Ingresos:** ${datos['ingresos']:.2f}\n"
+            f"💸 **Gastos:** ${datos['gastos']:.2f}\n"
+            f"✅ **Saldo:** ${datos['saldo']:.2f}\n"
+            f"📊 **Ventas registradas:** {datos['ventas_count']}\n"
+            f"📈 **Comisiones acumuladas:** ${datos['comisiones']:.2f}"
+        )
+        await update.message.reply_text(mensaje, parse_mode="Markdown")
+    except Exception as e:
+        logger.error(f"❌ Error en tesorero: {e}")
+        await update.message.reply_text("❌ Error al consultar tesorero")
